@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head >
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Meu Prefeito</title>
+
+    <!-- FusionCharts library-->
+    <script type="text/javascript" src="scripts/js/fusioncharts.js"></script>
+    <script type="text/javascript" src="scripts/js/fusioncharts.widgets.js"></script>
+
+    <!-- FusionCharts theme-->
+    <script type="text/javascript" src="scripts/js/themes/fusioncharts.theme.zune.js"></script>
+
+    <!-- AngularJS library -->
+    <script type="text/javascript" src="scripts/js/angular.js"></script>
+
+    <!-- AngularJS UI-Bootstrap -->
+    <script type="text/javascript" src="scripts/js/ui-bootstrap-tpls-2.1.3.min.js"></script>
+
+    <!-- Angular plugin -->
+    <script type="text/javascript" src="scripts/js/angular-fusioncharts.min.js"></script>
+
+    <!-- Angular model -->
+    <script type="text/javascript" src="angular/model/app.js"></script>
+
+    <!-- Angular controller -->
+    <script type="text/javascript" src="angular/controller/indexController.js"></script>
+
+    <!-- Style -->
+    <link rel="stylesheet" type="text/css" href="style/css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/my-font.css">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="css/agency.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index" ng-controller="IndexController">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <img src="img/logos/logo-borda.png" height="350%">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#termometro">Meu Prefeito</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#sobre">Sobre</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#equipe">Equipe</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Seja bem vindo(a) ao Meu Prefeito!</div>
+                <div class="intro-heading" >Fique por dentro dos candidatos a releição na Paraíba.</div>
+                <a href="#sobre" class="page-scroll btn btn-xl">Saiba mais</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- termometro Grid Section -->
+    <section id="termometro" class="bg-light-gray" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Meu Prefeito</h2>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="team-member">
+                        <img ng-src="{{emotion}}" class="img-responsive img-circle" alt="" width="100px" height="100px">
+                        
+                        <ul class="list-inline">
+                            <li>
+                                <h4>{{info.Nome}}</h4>
+                                <p class="text-muted">Nome</p>
+                            </li>
+                            <li>
+                                <h4>{{info.Prefeitura}}</h4>
+                                <p class="text-muted">Prefeitura</p>
+                            </li>
+                             <li>
+                                <h4>{{info.Prefeitura}}</h4>
+                                <p class="text-muted">Irregular</p>
+                            </li>
+                            <li>
+                                <div class="dropdown dropdown-scroll">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Candidato <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                        <li role="presentation">
+                                            <div class="input-group input-group-sm search-control"> 
+                                            <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-search"></span>
+                                            </span>
+                                                <input type="text" class="form-control" placeholder="Nome" ng-model="nome"></input>
+                                            </div>
+                                        </li>
+                                        <li role="presentation" ng-repeat="d in dados | filter:nome | orderBy:'Nome'"> <a ng-click=search(d.Nome)> {{d.Nome}} </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </li>
+                        </ul>
+
+                        <h4 class="section-heading">Interpretação</h4>
+                        <p class="text-muted">Este gestor tem propenção de {{value | number : 2}}% de incorrer em irrelugaridades contábeis.</p>
+
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <p>
+                        A Prefeitura Municipal de Campina Grande, na atual gestão, oferece ao cidadão campinense mais um espaço informacional e interativo de acesso a administração pública do município, a partir desde Portal do Contribuinte.
+
+Neste portal, o Contribuinte poderá verificar suas arrecadações e constatar a aplicação eficiente e eficaz dos recursos da Prefeitura Municipal de Campina Grande, tendo acesso a política fiscal da cidade, através de notícias, legislação, código tributários e contas públicas.
+                    </p>
+                </div>
+
+                <div class="col-sm-4">
+                    <div fusioncharts class="team-member"
+                   width="600"
+                   height="300"
+                   type="bar2d"
+                   dataSource="{{features}}" >
+                </div>
+                </div>
+            </div>
+
+    </section>
+
+    <!-- sobre Section -->
+    <section id="sobre">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Sobre</h2>
+                    <h3 class="section-subheading text-muted">O Meu Prefeito é um aplicativo desenvolvido pelo Laboratório Analytics.  O objetivo do aplicativo é auxiliar a população a conhecerem os candidatos a prefeito de 2016. Foram usados dados da TCE-PB de 2008 a 2016, TRE-PB e Sagres-PB. Código e dados usados nesse aplicativo estão disponíves neste  <a href="https://github.com/tatianass/meu-prefeito">repositório</a> </h3>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Equipe Section -->
+    <section id="equipe" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Equipe</h2>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/1.jpg" class="img-responsive img-circle" alt="" width="200px" height="200px">
+                        <h4>Allan Sales</h4>
+                        <p class="text-muted">Data Scientist</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="https://br.linkedin.com/in/allan-sales-a930a3a1"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/5.jpg" class="img-responsive img-circle" alt=""  width="200px" height="200px">
+                        <h4>Jefferson Emanuel</h4>
+                        <p class="text-muted">Data Scientist</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/3.jpg" class="img-responsive img-circle" alt="" width="200px" height="200px">
+                        <h4>Leandro Balby</h4>
+                        <p class="text-muted">Team Leader e Data Scientist</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="https://br.linkedin.com/in/leandro-balby-marinho-28b696b"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/4.jpg" class="img-responsive img-circle" alt="" width="200px" height="200px">
+                        <h4>Tatiana Saturno</h4>
+                        <p class="text-muted">Front-End e Data Scientist</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="https://br.linkedin.com/in/tatianasaturno"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/5.jpg" class="img-responsive img-circle" alt="" width="200px" height="200px">
+                        <h4>Zé Gildo</h4>
+                        <p class="text-muted">Data Scientist</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="https://br.linkedin.com/in/zé-gildo-0373ab49/en"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/agency.min.js"></script>
+
+</body>
+
+</html>

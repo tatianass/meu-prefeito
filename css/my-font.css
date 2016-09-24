@@ -1,0 +1,8 @@
+.dropdown.dropdown-scroll .dropdown-menu {
+    max-height: 200px;
+    width: 400px;
+    overflow: auto;
+}
+.search-control {
+    padding: 5px 10px;
+}
