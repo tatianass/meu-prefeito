@@ -26,7 +26,7 @@ indicadores_cont_PB <- indicadores_cont_cid %>% group_by(Ini_Gestao) %>%
 indicadores_cont_cid_candidatos <- indicadores_cont_cid %>%
   filter(Candidato2016) %>%
   select(Prefeitura = de_Ugestora, Nome = Eleito, Ini_Gestao, Fim_Gestao, Irregular = classe, 
-         nu_Dispensas, nu_Aditivo_Prazo, nu_Aditivo_Valor, nu_Convites, 
+         nu_Contratos, nu_Dispensas, nu_Aditivo_Prazo, nu_Aditivo_Valor, nu_Convites, 
          nu_Dispensas_Percent, nu_Aditivo_Prazo_Percent, nu_Aditivo_Valor_Percent, nu_Convites_Percent, 
          Populacao = POP, Exp_Vida = ESPVIDA, Ind_Escolaridade = I_ESCOLARIDADE, IDHM, IDHM_Educacao = IDHM_E, IDHM_Longevidade = IDHM_L, IDHM_Renda = IDHM_R)
 
