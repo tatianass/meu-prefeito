@@ -4,6 +4,14 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
     $scope.value = 0;
     $scope.info = {}
     $scope.featureData = {}
+    var mediaFeature = [
+                        {
+                            "value": "6"
+                        }, 
+                        {
+                            "value": "10"
+                        }
+                    ]
 
     //figuras representando reacoes a cada probabilidade
     $scope.emotion = "emotion/1.png";
@@ -15,27 +23,8 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
         {p: 1.0, src:"emotion/5.png"}];
 
     //atualizando as figuras
-    var updateImage = function(p){
-         $scope.emotion = emotions[0].src   
-    }
-
-
-    //grafico do termometro/corruptometro
-    $scope.termometro = {
-        chart: {
-                subcaptionFontBold: "0",
-                lowerLimit: "0",
-                upperLimit: "100",
-                numberSuffix: "%",
-                showBorder: "1",
-                thmFillColor: "#FFFFFF",
-                chartBottomMargin: "30",
-                majorTMNumber: "6",
-                ticksOnRight: "0"
-
-        },
-        value: $scope.value
-
+    var updateEmotion = function(p){
+        $scope.emotion = emotions[0].src
     }
 
     //busca pelo nome no do candidato
@@ -50,43 +39,70 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
 
         //deixa campo de pesquisa em branco
         $scope.nome = "";
-        
-        updateImage();
+
+        //atualizando valor do termometro
+        $scope.value = $scope.info.Probabilidade * 100;
 
         //atualizando os valores dos indicadores
-        
+        $scope.featureData=[{
+            label: "NAV_EL",
+            value: $scope.info.NAV_EL*1000
+        },
+        {
+            label: "NAT_EL",
+            value: $scope.info.NAT_EL*1000
+        }]
 
-        //$scope.features.data = $scope.featureData;
+        $scope.features.dataset[0].data = $scope.featureData;
     }
 
     //grafico das features/indicadores
     $scope.features = {
-        chart: {
-                caption: "Harry's SuperMart",
-                subCaption: "Top 5 stores in last month by revenue",
-                theme: "ocean",
-                yAxisMaxValue: "30"
-            },
-            data:[{
-                label: "Bakersfield Central",
-                value: "880000"
-            },
-            {
-                label: "Garden Groove harbour",
-                value: "730000"
-            },
-            {
-                label: "Los Angeles Topanga",
-                value: "590000"
-            },
-            {
-                label: "Compton-Rancho Dom",
-                value: "520000"
-            },
-            {
-                label: "Daly City Serramonte",
-                value: "330000"
-            }]
+        "chart": {
+                "caption": "Indicadores de corrupção",
+                "subCaption":"Valor a cada 1000 eleitores",
+                "paletteColors": "#0075c2,#1aaf5d",
+                "bgColor": "#ffffff",
+                "showBorder": "0",
+                "showHoverEffect":"1",
+                "showCanvasBorder": "0",
+                "usePlotGradientColor": "0",
+                "plotBorderAlpha": "10",
+                "legendBorderAlpha": "0",
+                "legendShadow": "0",
+                "placevaluesInside": "1",
+                "valueFontColor": "#ffffff",
+                "showXAxisLine": "1",
+                "xAxisLineColor": "#999999",
+                "divlineColor": "#999999",               
+                "divLineIsDashed": "1",
+                "showAlternateVGridColor": "0",
+                "subcaptionFontBold": "0",
+                "subcaptionFontSize": "14",
+                "yAxisMaxValue": "30"
+            },            
+            "categories": [
+                {
+                    "category": [
+                        {
+                            "label": "Aditivos de Valor"
+                        }, 
+                        {
+                            "label": "Aditivos Totais"
+                        }
+                    ]
+                }
+            ],            
+            "dataset": [
+                {
+                    "seriesname": "Resultado",
+                    "data": $scope.featureData
+                }, 
+                {
+                    "seriesname": "Média",
+                    "data": mediaFeature
+                }
+            ]
 
     };
 
