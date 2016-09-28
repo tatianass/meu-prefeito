@@ -1,0 +1,24 @@
+﻿﻿Na administração pública direta de qualquer que seja o poder da União, Estados, Municípios e Distrito Federal existe a obrigatoriedade de seguir um determinado procedimento chamado de licitação pública sendo este um princípio constitucional previsto no art. 37, XXI da nossa Carta Magna.
+
+As licitação podem ser encontrados na Lei 8.666/93 e na Lei 10.520/02 onde nestas pode-se observar a existência de seis modalidades: concorrência pública, tomada de preços, carta convite, concurso, leilão e pregão. 
+
+Algumas modalidades de licitação tem várias fragilidades que podem dar margem à corrupção. Uma delas é a licitação do tipo convite que pode ser usada para favorecer um dos licitantes em um contrato com a administração pública. De acordo com o TCU, esta é a modalidade licitatória que mais possui jurisprudência. Um outro mecanismo que é comumente usado para diversos tipos de fraudes é o contrato por dispensa ou inexigibilidade de licitação. Nesse caso a administração pública pode contratar fazer contratações diretas sem processo licitatório.
+
+É importante dizer que essas modalidade estão previstas em lei e não indicam a priori corrupção ou qualquer tipo de irregularidade. Mas como são mecanismos recorrentemente associados ao mal uso do dinheiro público, decidimos olhar com que frequência eles estão sendo usados pelos atuais prefeitos candidatos a reeleição no estado da Paraíba. 
+
+
+Dados da gestão:
+{Nome} é candidato a prefeito da cidade {cidade}. Durante a sua atual gestão - {inicio_gestao} a {fim_gestao} - foram fechados {numero_contratos} contratos de forma que {numero_dipensas} são da modalidade dispensa({numero_dispensa_percent}% do total de contratos) e {numero_convites} da modalidade convite({numero_convites_percent}%).
+Dentre todos os contratos, em {numero_aditivos_prazo}({numero_aditivos_prazo_percent}%) houve a postergação do prazo de conclusão da obra/serviço enquanto que em {numero_aditivos_valor}({numero_aditivos_valor_percent}%) houve a adição de recursos em dinheiro para a obra/serviço.
+
+Dados da cidade:
+A cidade de {cidade} é tem por volta de {população} habitantes, apresenta IDHM - valor calculado baseado no IDHM Educação ({idhm_e}), IDHM Longevidade ({idhm_l}) e IDHM Renda ({idhm_r}) - avaliado em {idhm}, índice de escolaridade de {ind_escolaridade} e expectativa de vida de {exp_vida}.
+
+Dados do estado:
+Na Paraíba, os prefeitos - nesse mesmo período de tempo - fecharam em média de {media_contratos_pb} contratos, sendo {media_dispensas_pb} dispensas({media_dispensas_pb_percent%}) e {media_convite_pb} convites({media_convite_pb_percent}%) e pediram {media_aditivos_prazo_pb} aditivos de prazo ({media_aditivos_prazo_pb_percent}%) e {media_aditivos_valor_pb} aditivos de valor({media_aditivos_valor_pb_percent}%).
+O estado apresenta um IDHM médio - composto pelo IDHM Educação de {idgm_e_medio_pb}, IDHM Longevidade ({idhm_l_medio_pb}) e IDHM Renda ({idhm_r_medio_pb}) - avaliado em {idhm_medio_pb}, índice de escolaridade médio de {ind_escolaridade_medio_pb} e expectativa média de vida de {exp_vida_media_pb}.
+
+Sobre licitações:
+Convite ou Carta-convite: Esse tipo de processo é o mais simples dentre os processos licitatórios e é utilizado para fazer aquisições de até R$150.000,00 em serviços de engenharia - ou R$80.000,00 em caso de compras ou outros tipos de serviços. Ele consiste no envio de convites a, pelo menos, três participantes concorrentes pela unidade administrativa. Casos em que apenas um participante é convidado devem ser justificados no edital. Por exemplo, empresa que obtém a patente de um produto que prende-se adquirir.
+Dispensa: Há casos em que não é necessário passar por um processo licitatório a fim de adquirir um bem ou um serviço, esses casos são chamados de dispensa. Casos de dispensa comumente acontecem quando a compra atinge o valor de até R$15.000,00 em serviços de engenharia - ou R$8.000,00 em compras ou tipos de serviço.
+Aditivo de prazo e valor: Em cada contrato fechado a partir de licitações, existem estimativas de quanto custará o serviço/obra e quando ele será finalizado. Mas, ocasionalmente, pode acontecer de algum serviço/obra, em andamento, ser reavaliado e necessitar de mais tempo ou mais ajuda em custo para ser finalizado. Nesse caso é submetido um aditivo contratual estimando o novo prazo para a conclusão da obra/serviço ou o quanto custará a obra/serviço.
