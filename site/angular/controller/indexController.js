@@ -46,8 +46,8 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
     $scope.emotion = "emotion/1.png";
 
     //atualizando as figuras
-    var updateEmotion = function(p){
-        $scope.emotion = emotions[0].src
+    var updateImage = function(p){
+        $scope.emotion = "img/candidatos/" + p + ".jpg";
     }
 
     //busca pelo nome no do candidato
@@ -59,6 +59,8 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
         }
         
         }) 
+
+        updateImage(nome)
 
         //deixa campo de pesquisa em branco
         $scope.nome = "";
