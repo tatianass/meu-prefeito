@@ -19,7 +19,7 @@ indicadores_cont_cid <- full_join(tre_sagres, cidades, by = "de_Ugestora") %>%
          nu_Aditivo_Valor_Percent = format_number(nu_Aditivo_Valor_Prop_Contratos), nu_Convites_Percent = format_number(nu_Convites_Prop_Contratos))
 
 indicadores_cont_PB <- indicadores_cont_cid %>% group_by(Ini_Gestao) %>% 
-  summarise(Media_Contratos_PB = mean(nu_Contratos), Media_Dispensas_PB=mean(nu_Dispensas), Media_Aditivos_Prazo_PB=mean(nu_Aditivo_Prazo), Media_Aditivos_Valor_PB=mean(nu_Aditivo_Valor), Media_Convites_PB=mean(nu_Convites), 
+  summarise(Media_Contratos_PB = mean(nu_Contratos, trim=0.1), Media_Dispensas_PB=mean(nu_Dispensas, trim=0.1), Media_Aditivos_Prazo_PB=mean(nu_Aditivo_Prazo, trim=0.1), Media_Aditivos_Valor_PB=mean(nu_Aditivo_Valor, trim=0.1), Media_Convites_PB=mean(nu_Convites, trim=0.1), 
             IDHM_PB = mean(IDHM), IDHM_E_PB = mean(IDHM_E), IDHM_L_PB = mean(IDHM_L), IDHM_R_PB = mean(IDHM_R), Ind_Escolaridade_PB = mean(I_ESCOLARIDADE), Exp_Vida_PB = mean(ESPVIDA)) %>%
   mutate(Media_Dispensas_PB_Percent = Media_Dispensas_PB/Media_Contratos_PB, Media_Convite_PB_Percent = Media_Convites_PB/Media_Contratos_PB, Media_Aditivos_Prazo_PB_Percent = Media_Aditivos_Prazo_PB/Media_Contratos_PB, Media_Aditivos_Valor_PB_Percent = Media_Aditivos_Valor_PB/Media_Contratos_PB)
 
