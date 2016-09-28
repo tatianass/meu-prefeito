@@ -70,7 +70,8 @@
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                    <img src="img/logos/logo-borda.png" height="350%">
+                    <!-- <img src="img/logos/logo-borda.png" height="350%"> -->
+                    Meu Prefeito
                 </a>
             </div>
 
@@ -117,8 +118,8 @@
             </div>
             <div class="row">
                     <div class="team-member">
-                        <img ng-src="{{emotion}}" class="img-responsive img-circle" alt="" width="100px" height="100px">
                         
+                        <!-- <img ng-src="{{emotion}}" class="img-responsive img-circle" alt="" width="100px" height="100px"> -->
                         <ul class="list-inline">
                             <li>
                                 <h4>{{info.Nome}}</h4>
@@ -129,7 +130,7 @@
                                 <p class="text-muted">Prefeitura</p>
                             </li>
                              <li>
-                                <h4>{{info.Prefeitura}}</h4>
+                                <h4>{{info.Irregular}}</h4>
                                 <p class="text-muted">Irregular</p>
                             </li>
                             <li>
@@ -151,33 +152,53 @@
                                 </div>
                                 
                             </li>
+                            <li>
+                                <a ng-click="detalhes = !detalhes" class="page-scroll btn">Mais detalhes</a>
+                            </li>
+                            
                         </ul>
-
-                        <h4 class="section-heading">Interpretação</h4>
-                        <p class="text-muted">Este gestor tem propenção de {{value | number : 2}}% de incorrer em irrelugaridades contábeis.</p>
-
                 </div>
             </div>
 
             <div class="row">
-
-                <div class="col-sm-4">
+                
+                <div ng-show="detalhes" class="col-lg-12 text-center">
                     <p>
-                        A Prefeitura Municipal de Campina Grande, na atual gestão, oferece ao cidadão campinense mais um espaço informacional e interativo de acesso a administração pública do município, a partir desde Portal do Contribuinte.
+                        Dados da gestão:
+                        {{info.Nome}} é candidato(a) a prefeito(a) da cidade {{info.Prefeitura}}. Durante a sua antiga gestão - {{info.Ini_Gestao}} a {{info.Fim_Gestao}} - foram fechados {{info.nu_Contratos}} contratos de forma que {{info.nu_Dispensas}} são da modalidade dispensa({{info.nu_Dispensas_Percent}}% do total de contratos) e {{info.nu_Convites}} da modalidade convite ({{info.nu_Convites_Percent}}%).
+                        Dentre todos os contratos, em {{info.nu_Aditivo_Prazo}} ({{info.nu_Aditivo_Prazo}}%) houve a postergação do prazo de conclusão da obra/serviço enquanto que em {{info.nu_Aditivo_Valor}} ({{info.nu_Aditivo_Valor_Percent}}%) houve a adição de recursos em dinheiro para a obra/serviço.
 
-Neste portal, o Contribuinte poderá verificar suas arrecadações e constatar a aplicação eficiente e eficaz dos recursos da Prefeitura Municipal de Campina Grande, tendo acesso a política fiscal da cidade, através de notícias, legislação, código tributários e contas públicas.
+                        Dados da cidade:
+                        A cidade de {{info.Prefeitura}} é populada por {{info.Populacao}} habitantes, apresenta IDHM - valor calculado baseado no IDHM Educação ({{info.IDHM_Educacao}}), IDHM Longevidade ({{info.IDHM_Longevidade}}) e IDHM Renda ({{info.IDHM_Renda}}) - avaliado em {{info.IDHM}}, índice de escolaridade de {{info.Ind_Escolaridade}} e expectativa de vida de {{info.Exp_Vida}}.
+
+                        Dados do estado:
+                        Na Paraíba, os prefeitos gestores - nesse mesmo período de tempo - fecharam em média de {{infoPB.Media_Contratos_PB}} contratos, sendo {{infoPB.Media_Dispensas_PB}} dispensas({{infoPB.Media_Dispensas_PB_Percent}}%) e {{infoPB.Media_Convites_PB}} convites({{infoPB.Media_Convite_PB_Percent}}%) e pediram {{infoPB.Media_Aditivos_Prazo_PB}} aditivos de prazo ({{infoPB.Media_Aditivos_Prazo_PB_Percent}}%) e {{infoPB.Media_Aditivos_Valor_PB}} aditivos de valor({{infoPB.Media_Aditivos_Valor_PB_Percent}}%).
+                        O estado apresenta um IDHM médio - composto pelo IDHM Educação de {{infoPB.IDHM_E_PB}}, IDHM Longevidade ({{infoPB.IDHM_L_PB}}) e IDHM Renda ({{infoPB.IDHM_R_PB}}) - avaliado em {{infoPB.IDHM_PB}}, índice de escolaridade médio de {{infoPB.Ind_Escolaridade_PB}} e expectativa média de vida de {{infoPB.Exp_Vida_PB}} anos.
                     </p>
                 </div>
 
-                <div class="col-sm-4">
-                    <div fusioncharts class="team-member"
-                   width="600"
-                   height="300"
-                   type="msbar2d"
-                   dataSource="{{features}}" >
+                <div ng-hide="detalhes">
+                    <div  class="col-sm-6">
+                        <div fusioncharts class="team-member"
+                           width="500"
+                           height="400"
+                           type="msbar2d"
+                           dataSource="{{features}}" >
+                        </div>
+                    </div>
+
+                    <div  class="col-sm-6">
+                        <div fusioncharts class="team-member"
+                           width="500"
+                           height="400"
+                           type="msbar2d"
+                           dataSource="{{featuresMin}}" >
+                        </div>
+                    </div>
                 </div>
-                </div>
+
             </div>
+            
 
     </section>
 
@@ -187,7 +208,7 @@ Neste portal, o Contribuinte poderá verificar suas arrecadações e constatar a
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Sobre</h2>
-                    <h3 class="section-subheading text-muted">O Meu Prefeito é um aplicativo desenvolvido pelo Laboratório Analytics.  O objetivo do aplicativo é auxiliar a população a conhecerem os candidatos a prefeito de 2016. Foram usados dados da TCE-PB de 2008 a 2016, TRE-PB e Sagres-PB. Código e dados usados nesse aplicativo estão disponíves neste  <a href="https://github.com/tatianass/meu-prefeito">repositório</a> </h3>
+                    <h3 class="section-subheading text-muted">O Meu Prefeito é um aplicativo desenvolvido pelo Laboratório Analytics.  O objetivo do aplicativo é auxiliar a população a conhecerem os candidatos a prefeito de 2016. Foram usados dados da TCE-PB de 2008 a 2016, TRE-PB, Sagres-PB e do IBGE. Código e dados usados nesse aplicativo estão disponíves neste  <a href="https://github.com/tatianass/meu-prefeito">repositório</a> </h3>
                 </div>
             </div>
             
