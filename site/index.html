@@ -103,8 +103,6 @@
             <div class="intro-text">
                 <div class="intro-lead-in">Seja bem vindo(a) ao Meu Prefeito!</div>
                 <div class="intro-heading" >Reeleições na Paraíba</div>
-                <a href="#sobre" class="page-scroll btn btn-xl">Sobre</a>
-                <a href="#termometro" class="page-scroll btn btn-xl">Pesquisa</a>
             </div>
         </div>
     </header>
@@ -113,69 +111,92 @@
     <section id="termometro" class="bg-light-gray" >
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Meu Prefeito</h2>
+                <div class="col-lg-12 ">
+                    <div class="col-lg-6 text-right">
+                        <h2 class="section-heading">Meu Prefeito</h2>
+                    </div>
+                    <div class="col-lg-6 dropdown dropdown-scroll">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Candidato <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation">
+                            <div class="input-group input-group-sm search-control"> 
+                            <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-search"></span>
+                            </span>
+                                <input type="text" class="form-control" placeholder="Nome" ng-model="nome"></input>
+                            </div>
+                        </li>
+                        <li role="presentation" ng-repeat="d in dados | filter:nome | orderBy:'Nome'"> <a ng-click=search(d.Nome)> {{d.Nome}} </a>
+                        </li>
+                    </ul>
                 </div>
+                </div>
+                
             </div>
             <div class="row">
-                    <div class="team-member">
-                        
-                         <img ng-src="{{emotion}}" class="img-responsive img-circle" alt="" width="100px" height="100px"> 
-                        <ul class="list-inline">
-                            <li>
-                                <h4>{{info.Nome}}</h4>
+                <div class="team-member">
+                     <div class="white">
+                         <div class="mg-top">
+                         <img ng-src="{{emotion}}" class="img-responsive img-circle bc" alt="" width="100px" height="100px"> 
+                             <h4>{{info.Nome}}</h4>
                                 <p class="text-muted">Nome</p>
-                            </li>
-                            <li>
-                                <h4>{{info.Prefeitura}}</h4>
-                                <p class="text-muted">Prefeitura</p>
-                            </li>
-                             <li>
-                                <h4>{{info.Irregular}}</h4>
-                                <p class="text-muted">Irregular</p>
-                            </li>
-                            <li>
-                                <div class="dropdown dropdown-scroll">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Candidato <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                        <li role="presentation">
-                                            <div class="input-group input-group-sm search-control"> 
-                                            <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-search"></span>
-                                            </span>
-                                                <input type="text" class="form-control" placeholder="Nome" ng-model="nome"></input>
-                                            </div>
-                                        </li>
-                                        <li role="presentation" ng-repeat="d in dados | filter:nome | orderBy:'Nome'"> <a ng-click=search(d.Nome)> {{d.Nome}} </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <hr>
+                            <ul class="list-inline">
+                                <li>
+                                    <h4>{{info.Prefeitura}}</h4>
+                                    <p class="text-muted">Prefeitura</p>
+                                </li>
+                                 <li>
+                                    <h4>{{info.Irregular}}</h4>
+                                    <p class="text-muted">Irregular</p>
+                                </li>
+                                <li>
+                                    <a ng-click="setDetalhes()" class="page-scroll btn">{{txtDetalhes}}</a>
+                                </li>
                                 
-                            </li>
-                            <li>
-                                <a ng-click="detalhes = !detalhes" class="page-scroll btn">Mais detalhes</a>
-                            </li>
-                            
-                        </ul>
+                            </ul>
+                         </div>    
+                     </div>                         
                 </div>
             </div>
 
             <div class="row">
                 
-                <div ng-show="detalhes" class="col-lg-12 text-center">
+                <div ng-show="detalhes" class="col-lg-12 text-justify">
+                    <h4>Irregular</h4>
                     <p>
-                        Dados da gestão:
-                        {{info.Nome}} é candidato(a) a prefeito(a) da cidade {{info.Prefeitura}}. Durante a sua antiga gestão - {{info.Ini_Gestao}} a {{info.Fim_Gestao}} - foram fechados {{info.nu_Contratos}} contratos de forma que {{info.nu_Dispensas}} são da modalidade dispensa({{info.nu_Dispensas_Percent}}% do total de contratos) e {{info.nu_Convites}} da modalidade convite ({{info.nu_Convites_Percent}}%).
-                        Dentre todos os contratos, em {{info.nu_Aditivo_Prazo}} ({{info.nu_Aditivo_Prazo}}%) houve a postergação do prazo de conclusão da obra/serviço enquanto que em {{info.nu_Aditivo_Valor}} ({{info.nu_Aditivo_Valor_Percent}}%) houve a adição de recursos em dinheiro para a obra/serviço.
-
-                        Dados da cidade:
-                        A cidade de {{info.Prefeitura}} é populada por {{info.Populacao}} habitantes, apresenta IDHM - valor calculado baseado no IDHM Educação ({{info.IDHM_Educacao}}), IDHM Longevidade ({{info.IDHM_Longevidade}}) e IDHM Renda ({{info.IDHM_Renda}}) - avaliado em {{info.IDHM}}, índice de escolaridade de {{info.Ind_Escolaridade}} e expectativa de vida de {{info.Exp_Vida}}.
-
-                        Dados do estado:
-                        Na Paraíba, os prefeitos gestores - nesse mesmo período de tempo - fecharam em média de {{infoPB.Media_Contratos_PB}} contratos, sendo {{infoPB.Media_Dispensas_PB}} dispensas({{infoPB.Media_Dispensas_PB_Percent}}%) e {{infoPB.Media_Convites_PB}} convites({{infoPB.Media_Convite_PB_Percent}}%) e pediram {{infoPB.Media_Aditivos_Prazo_PB}} aditivos de prazo ({{infoPB.Media_Aditivos_Prazo_PB_Percent}}%) e {{infoPB.Media_Aditivos_Valor_PB}} aditivos de valor({{infoPB.Media_Aditivos_Valor_PB_Percent}}%).
-                        O estado apresenta um IDHM médio - composto pelo IDHM Educação de {{infoPB.IDHM_E_PB}}, IDHM Longevidade ({{infoPB.IDHM_L_PB}}) e IDHM Renda ({{infoPB.IDHM_R_PB}}) - avaliado em {{infoPB.IDHM_PB}}, índice de escolaridade médio de {{infoPB.Ind_Escolaridade_PB}} e expectativa média de vida de {{infoPB.Exp_Vida_PB}} anos.
+                        Candidato com contas julgadas irregulares pelo TRE-PB (Tribunal Regional Eleitoral da Paraíba).    
                     </p>
+                    <br>
+                    <h4>Dados da gestão</h4>
+                    <p>
+                        {{info.Nome}} é candidato(a) a prefeito(a) da cidade {{info.Prefeitura}}. Durante a sua antiga gestão - {{info.Ini_Gestao}} a {{info.Fim_Gestao}} - foram fechados {{info.nu_Contratos}} contratos de forma que {{info.nu_Dispensas}} são da modalidade dispensa ({{info.nu_Dispensas_Percent}}% do total de contratos) e {{info.nu_Convites}} da modalidade convite ({{info.nu_Convites_Percent}}%).    
+                    </p>
+                    <p>
+                        Dentre todos os contratos, em {{info.nu_Aditivo_Prazo}} ({{info.nu_Aditivo_Prazo}}%) houve a postergação do prazo de conclusão da obra/serviço enquanto que em {{info.nu_Aditivo_Valor}} ({{info.nu_Aditivo_Valor_Percent}}%) houve a adição de recursos em dinheiro para a obra/serviço.    
+                    </p>
+                    <br>
+                    <h4>Dados da cidade</h4>
+                    <p>
+                        A cidade de {{info.Prefeitura}} é populada por {{info.Populacao}} habitantes, apresenta IDHM - valor calculado baseado no IDHM Educação ({{info.IDHM_Educacao}}), IDHM Longevidade ({{info.IDHM_Longevidade}}) e IDHM Renda ({{info.IDHM_Renda}}) - avaliado em {{info.IDHM}}, índice de escolaridade de {{info.Ind_Escolaridade}} e expectativa de vida de {{info.Exp_Vida}}.    
+                    </p>
+                    <br>
+                    <h4>Dados do estado</h4>
+                    <p>
+                        Na Paraíba, os prefeitos gestores - nesse mesmo período de tempo - fecharam em média de {{infoPB.Media_Contratos_PB}} contratos, sendo {{infoPB.Media_Dispensas_PB}} dispensas ({{infoPB.Media_Dispensas_PB_Percent}}%) e {{infoPB.Media_Convites_PB}} convites({{infoPB.Media_Convite_PB_Percent}}%) e pediram {{infoPB.Media_Aditivos_Prazo_PB}} aditivos de prazo ({{infoPB.Media_Aditivos_Prazo_PB_Percent}}%) e {{infoPB.Media_Aditivos_Valor_PB}} aditivos de valor ({{infoPB.Media_Aditivos_Valor_PB_Percent}}%).    
+                    </p>
+                    <p>
+                        O estado apresenta um IDHM médio - composto pelo IDHM Educação de {{infoPB.IDHM_E_PB}}, IDHM Longevidade ({{infoPB.IDHM_L_PB}}) e IDHM Renda ({{infoPB.IDHM_R_PB}}) - avaliado em {{infoPB.IDHM_PB}}, índice de escolaridade médio de {{infoPB.Ind_Escolaridade_PB}} e expectativa média de vida de {{infoPB.Exp_Vida_PB}} anos.    
+                    </p>
+                    <br>                        
+                    <h4>Sobre licitações</h4>
+                    <h5>Convite ou Carta-convite</h5>
+                    <p>Esse tipo de processo é o mais simples dentre os processos licitatórios e é utilizado para fazer aquisições de até R$150.000,00 em serviços de engenharia - ou R$80.000,00 em caso de compras ou outros tipos de serviços. Ele consiste no envio de convites a, pelo menos, três participantes concorrentes pela unidade administrativa. Casos em que apenas um participante é convidado devem ser justificados no edital. Por exemplo, empresa que obtém a patente de um produto que prende-se adquirir.</p>
+                    <h5>Dispensa</h5>
+                    <p>Há casos em que não é necessário passar por um processo licitatório a fim de adquirir um bem ou um serviço, esses casos são chamados de dispensa. Casos de dispensa comumente acontecem quando a compra atinge o valor de até R$15.000,00 em serviços de engenharia - ou R$8.000,00 em compras ou tipos de serviço.</p>
+                    <h5>Aditivo de prazo e valor</h5>
+                    <p>Em cada contrato fechado a partir de licitações, existem estimativas de quanto custará o serviço/obra e quando ele será finalizado. Mas, ocasionalmente, pode acontecer de algum serviço/obra, em andamento, ser reavaliado e necessitar de mais tempo ou mais ajuda em custo para ser finalizado. Nesse caso é submetido um aditivo contratual estimando o novo prazo para a conclusão da obra/serviço ou o quanto custará a obra/serviço.</p>
                 </div>
 
                 <div ng-hide="detalhes">
@@ -204,12 +225,12 @@
     </section>
 
     <!-- sobre Section -->
-    <section id="sobre">
+    <section id="sobre" class="bg-light-gray">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Sobre</h2>
-                    <h3 class="section-subheading text-muted">O Meu Prefeito é um aplicativo desenvolvido pelo Laboratório Analytics.  O objetivo do aplicativo é auxiliar a população a conhecerem os candidatos a prefeito de 2016. Foram usados dados da TCE-PB de 2008 a 2016, TRE-PB, Sagres-PB e do IBGE. Código e dados usados nesse aplicativo estão disponíves neste  <a href="https://github.com/tatianass/meu-prefeito">repositório</a> </h3>
+                <div class="col-lg-12 text-justify">
+                    <h2 class="section-heading text-center">Sobre</h2>
+                    <p class="section-subheading">O Meu Prefeito é um aplicativo desenvolvido pelo Laboratório Analytics. O objetivo do aplicativo é auxiliar aos eleitores a conhecerem os candidatos, prefeitos, à reeleição de 2016 na Paraíba. Foram usados dados da TCE-PB (Tribunal de Contas do Estado da Paraíba) de 2008 a 2016, TRE-PB, Sagres-PB e do IBGE. Código e dados usados nesse aplicativo estão disponíves neste  <a href="https://github.com/tatianass/meu-prefeito">repositório</a>.</p>
                 </div>
             </div>
             
