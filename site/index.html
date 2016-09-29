@@ -164,32 +164,24 @@
             <div class="row">
                 
                 <div ng-show="detalhes" class="col-lg-12 text-justify">
+					<p>
+					﻿Na administração pública direta de qualquer que seja o poder da União, Estados, Municípios e Distrito Federal existe a obrigatoriedade de seguir um determinado procedimento chamado de licitação pública sendo este um princípio constitucional previsto no art. 37, XXI da nossa Carta Magna.
+					</p>
+					<p>As licitação podem ser encontrados na Lei 8.666/93 e na Lei 10.520/02 onde nestas pode-se observar a existência de seis modalidades: concorrência pública, tomada de preços, carta convite, concurso, leilão e pregão. 
+					</p>
+					<p>Algumas modalidades de licitação tem várias fragilidades que podem dar margem à corrupção. Uma delas é a licitação do tipo convite que pode ser usada para favorecer um dos licitantes em um contrato com a administração pública. De acordo com o TCU, esta é a modalidade licitatória que mais possui jurisprudência. Um outro mecanismo que é comumente usado para diversos tipos de fraudes é o contrato por dispensa ou inexigibilidade de licitação. Nesse caso a administração pública pode contratar fazer contratações diretas sem processo licitatório.
+					</p>
+					<p>É importante dizer que essas modalidade estão previstas em lei e não indicam a priori corrupção ou qualquer tipo de irregularidade. Mas como são mecanismos recorrentemente associados ao mal uso do dinheiro público, decidimos olhar com que frequência eles estão sendo usados pelos atuais prefeitos candidatos a reeleição no estado da Paraíba. 
+					</p>
+					<br>
+					
                     <h4>Irregular</h4>
                     <p>
                         Candidato com contas julgadas irregulares pelo TRE-PB (Tribunal Regional Eleitoral da Paraíba).    
                     </p>
                     <br>
-                    <h4>Dados da gestão</h4>
-                    <p>
-                        {{info.Nome}} é candidato(a) a prefeito(a) da cidade {{info.Prefeitura}}. Durante a sua antiga gestão - {{info.Ini_Gestao}} a {{info.Fim_Gestao}} - foram fechados {{info.nu_Contratos}} contratos de forma que {{info.nu_Dispensas}} são da modalidade dispensa ({{info.nu_Dispensas_Percent}}% do total de contratos) e {{info.nu_Convites}} da modalidade convite ({{info.nu_Convites_Percent}}%).    
-                    </p>
-                    <p>
-                        Dentre todos os contratos, em {{info.nu_Aditivo_Prazo}} ({{info.nu_Aditivo_Prazo}}%) houve a postergação do prazo de conclusão da obra/serviço enquanto que em {{info.nu_Aditivo_Valor}} ({{info.nu_Aditivo_Valor_Percent}}%) houve a adição de recursos em dinheiro para a obra/serviço.    
-                    </p>
-                    <br>
-                    <h4>Dados da cidade</h4>
-                    <p>
-                        A cidade de {{info.Prefeitura}} é populada por {{info.Populacao}} habitantes, apresenta IDHM - valor calculado baseado no IDHM Educação ({{info.IDHM_Educacao}}), IDHM Longevidade ({{info.IDHM_Longevidade}}) e IDHM Renda ({{info.IDHM_Renda}}) - avaliado em {{info.IDHM}}, índice de escolaridade de {{info.Ind_Escolaridade}} e expectativa de vida de {{info.Exp_Vida}}.    
-                    </p>
-                    <br>
-                    <h4>Dados do estado</h4>
-                    <p>
-                        Na Paraíba, os prefeitos gestores - nesse mesmo período de tempo - fecharam em média de {{infoPB.Media_Contratos_PB}} contratos, sendo {{infoPB.Media_Dispensas_PB}} dispensas ({{infoPB.Media_Dispensas_PB_Percent}}%) e {{infoPB.Media_Convites_PB}} convites({{infoPB.Media_Convite_PB_Percent}}%) e pediram {{infoPB.Media_Aditivos_Prazo_PB}} aditivos de prazo ({{infoPB.Media_Aditivos_Prazo_PB_Percent}}%) e {{infoPB.Media_Aditivos_Valor_PB}} aditivos de valor ({{infoPB.Media_Aditivos_Valor_PB_Percent}}%).    
-                    </p>
-                    <p>
-                        O estado apresenta um IDHM médio - composto pelo IDHM Educação de {{infoPB.IDHM_E_PB}}, IDHM Longevidade ({{infoPB.IDHM_L_PB}}) e IDHM Renda ({{infoPB.IDHM_R_PB}}) - avaliado em {{infoPB.IDHM_PB}}, índice de escolaridade médio de {{infoPB.Ind_Escolaridade_PB}} e expectativa média de vida de {{infoPB.Exp_Vida_PB}} anos.    
-                    </p>
-                    <br>                        
+					
+					<br>                        
                     <h4>Sobre licitações</h4>
                     <h5>Convite ou Carta-convite</h5>
                     <p>Esse tipo de processo é o mais simples dentre os processos licitatórios e é utilizado para fazer aquisições de até R$150.000,00 em serviços de engenharia - ou R$80.000,00 em caso de compras ou outros tipos de serviços. Ele consiste no envio de convites a, pelo menos, três participantes concorrentes pela unidade administrativa. Casos em que apenas um participante é convidado devem ser justificados no edital. Por exemplo, empresa que obtém a patente de um produto que prende-se adquirir.</p>
@@ -200,16 +192,24 @@
                 </div>
 
                 <div ng-hide="detalhes">
-                    <div  class="col-sm-6">
+					<div>
                         <div fusioncharts class="team-member"
-                           width="500"
-                           height="400"
+                           width="100%"
+                           height="10%"
                            type="msbar2d"
                            dataSource="{{features}}" >
                         </div>
                     </div>
-
-                    <div  class="col-sm-6">
+					
+					<h4>Dados da gestão</h4>
+                    <p>
+                        {{info.Nome}} é candidato(a) a prefeito(a) da cidade {{info.Prefeitura}}. Durante a sua antiga gestão - {{info.Ini_Gestao}} a {{info.Fim_Gestao}} - foram fechados {{info.nu_Contratos}} contratos de forma que {{info.nu_Dispensas}} são da modalidade dispensa ({{info.nu_Dispensas_Percent}}% do total de contratos) e {{info.nu_Convites}} da modalidade convite ({{info.nu_Convites_Percent}}%).    
+                    </p>
+                    <p>
+                        Dentre todos os contratos, em {{info.nu_Aditivo_Prazo}} ({{info.nu_Aditivo_Prazo}}%) houve a postergação do prazo de conclusão da obra/serviço enquanto que em {{info.nu_Aditivo_Valor}} ({{info.nu_Aditivo_Valor_Percent}}%) houve a adição de recursos em dinheiro para a obra/serviço.    
+                    </p>
+                    <br>	
+                    <div class="col-sm-6">
                         <div fusioncharts class="team-member"
                            width="500"
                            height="400"
@@ -217,6 +217,20 @@
                            dataSource="{{featuresMin}}" >
                         </div>
                     </div>
+				
+					<h4>Dados da cidade</h4>
+                    <p>
+                        A cidade de {{info.Prefeitura}} é populada por {{info.Populacao}} habitantes, apresenta IDHM - valor calculado baseado no IDHM Educação ({{info.IDHM_Educacao}}), IDHM Longevidade ({{info.IDHM_Longevidade}}) e IDHM Renda ({{info.IDHM_Renda}}) - avaliado em {{info.IDHM}}, índice de escolaridade de {{info.Ind_Escolaridade}} e expectativa de vida de {{info.Exp_Vida}}.    
+                    </p>
+                    <br>
+					
+                    <h4>Dados do estado</h4>
+                    <p>
+                        Na Paraíba, os prefeitos gestores - nesse mesmo período de tempo - fecharam em média de {{infoPB.Media_Contratos_PB}} contratos, sendo {{infoPB.Media_Dispensas_PB}} dispensas ({{infoPB.Media_Dispensas_PB_Percent}}%) e {{infoPB.Media_Convites_PB}} convites({{infoPB.Media_Convite_PB_Percent}}%) e pediram {{infoPB.Media_Aditivos_Prazo_PB}} aditivos de prazo ({{infoPB.Media_Aditivos_Prazo_PB_Percent}}%) e {{infoPB.Media_Aditivos_Valor_PB}} aditivos de valor ({{infoPB.Media_Aditivos_Valor_PB_Percent}}%).    
+                    </p>
+                    <p>
+                        O estado apresenta um IDHM médio - composto pelo IDHM Educação de {{infoPB.IDHM_E_PB}}, IDHM Longevidade ({{infoPB.IDHM_L_PB}}) e IDHM Renda ({{infoPB.IDHM_R_PB}}) - avaliado em {{infoPB.IDHM_PB}}, índice de escolaridade médio de {{infoPB.Ind_Escolaridade_PB}} e expectativa média de vida de {{infoPB.Exp_Vida_PB}} anos.    
+                    </p>
                 </div>
 
             </div>
@@ -230,7 +244,7 @@
             <div class="row">
                 <div class="col-lg-12 text-justify">
                     <h2 class="section-heading text-center">Sobre</h2>
-                    <p class="section-subheading">O Meu Prefeito é um aplicativo desenvolvido pelo Laboratório Analytics. O objetivo do aplicativo é auxiliar aos eleitores a conhecerem os candidatos, prefeitos, à reeleição de 2016 na Paraíba. Foram usados dados da TCE-PB (Tribunal de Contas do Estado da Paraíba) de 2008 a 2016, TRE-PB, Sagres-PB e do IBGE. Código e dados usados nesse aplicativo estão disponíves neste  <a href="https://github.com/tatianass/meu-prefeito">repositório</a>.</p>
+                    <p class="section-subheading">O Meu Prefeito é um aplicativo desenvolvido pelo Laboratório Analytics. O objetivo do aplicativo é auxiliar os eleitores a conhecerem os candidatos, prefeitos, à reeleição de 2016 na Paraíba. Foram usados dados da TCE-PB (Tribunal de Contas do Estado da Paraíba) de 2008 a 2016, TRE-PB, Sagres-PB e do IBGE. Código e dados usados nesse aplicativo estão disponíves neste  <a href="https://github.com/tatianass/meu-prefeito">repositório</a>.</p>
                 </div>
             </div>
             

@@ -4,48 +4,123 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
     $scope.nome = "";
     $scope.value = 0;
     $scope.info = {}
-    $scope.infoPB = {"Ini_Gestao":2013,"Media_Contratos_PB":232.4056,"Media_Dispensas_PB":20.1222,"Media_Aditivos_Prazo_PB":23.8389,"Media_Aditivos_Valor_PB":33.1278,"Media_Convites_PB":20.5778,"IDHM_PB":0.5878,"IDHM_E_PB":0.4775,"IDHM_L_PB":0.7558,"IDHM_R_PB":0.5645,"Ind_Escolaridade_PB":0.3003,"Exp_Vida_PB":70.3435,"Media_Dispensas_PB_Percent":0.0866,"Media_Convite_PB_Percent":0.0885,"Media_Aditivos_Prazo_PB_Percent":0.1026,"Media_Aditivos_Valor_PB_Percent":0.1425}
+    $scope.infoPB = {};
+    var info2013 = {"Ini_Gestao":2013,"Media_Contratos_PB":232.4056,"Media_Dispensas_PB":20.1222,"Media_Aditivos_Prazo_PB":23.8389,"Media_Aditivos_Valor_PB":33.1278,"Media_Convites_PB":20.5778,"IDHM_PB":0.5878,"IDHM_E_PB":0.4775,"IDHM_L_PB":0.7558,"IDHM_R_PB":0.5645,"Ind_Escolaridade_PB":0.3003,"Exp_Vida_PB":70.3435,"Media_Dispensas_PB_Percent":0.0866,"Media_Convite_PB_Percent":0.0885,"Media_Aditivos_Prazo_PB_Percent":0.1026,"Media_Aditivos_Valor_PB_Percent":0.1425};
+	var info2009 = {"Ini_Gestao":2009,"Media_Contratos_PB":339.2818,"Media_Dispensas_PB":10.6464,"Media_Aditivos_Prazo_PB":9.2873,"Media_Aditivos_Valor_PB":17.9006,"Media_Convites_PB":147.8122,"IDHM_PB":0.5877,"IDHM_E_PB":0.4775,"IDHM_L_PB":0.7558,"IDHM_R_PB":0.5644,"Ind_Escolaridade_PB":0.3003,"Exp_Vida_PB":70.3428,"Media_Dispensas_PB_Percent":0.0314,"Media_Convite_PB_Percent":0.4357,"Media_Aditivos_Prazo_PB_Percent":0.0274,"Media_Aditivos_Valor_PB_Percent":0.0528};
     
-    //dados da candidatura
+	//dados da candidatura
     $scope.featureData = {}
     //dados socioeconomicos
     $scope.featureDataMin = {}
 
+	var mediaFeature2009 = [
+                        {
+                            "value": info2009.Media_Contratos_PB
+                        }, 
+                        {
+                            "value": info2009.Media_Dispensas_PB
+                        }, 
+                        {
+                            "value": info2009.Media_Convites_PB
+                        }, 
+                        {
+                            "value": info2009.Media_Aditivos_Prazo_PB
+                        }, 
+                        {
+                            "value": info2009.Media_Aditivos_Valor_PB
+                        }
+                    ]
+
+	var mediaFeature2013 = [
+                        {
+                            "value": info2013.Media_Contratos_PB
+                        }, 
+                        {
+                            "value": info2013.Media_Dispensas_PB
+                        }, 
+                        {
+                            "value": info2013.Media_Convites_PB
+                        }, 
+                        {
+                            "value": info2013.Media_Aditivos_Prazo_PB
+                        }, 
+                        {
+                            "value": info2013.Media_Aditivos_Valor_PB
+                        }
+                    ]
+
+	
     //media da Paraiba para a candidatura
     var mediaFeature = [
                         {
-                            "value": "232"
+                            "value": ""
                         }, 
                         {
-                            "value": "20"
+                            "value": ""
                         }, 
                         {
-                            "value": "21"
+                            "value": ""
                         }, 
                         {
-                            "value": "24"
+                            "value": ""
                         }, 
                         {
-                            "value": "33"
+                            "value": ""
                         }
                     ]
 
     //media da Paraiba para os indices socioeconomicos
-    var mediaFeatureMin = [
+    var mediaFeatureMin2009 = [
                         {
-                            "value": "0.4775"
+                            "value": info2009.IDHM_E_PB
                         }, 
                         {
-                            "value": "0.7558"
+                            "value": info2009.IDHM_L_PB
                         }, 
                         {
-                            "value": "0.5645"
+                            "value": info2009.IDHM_R_PB
                         }, 
                         {
-                            "value": "0.5878"
+                            "value": info2009.IDHM_PB
                         }, 
                         {
-                            "value": "0.3003"
+                            "value": info2009.Ind_Escolaridade_PB
+                        }
+                    ]
+	
+	var mediaFeatureMin2013 = [
+                        {
+                            "value": info2013.IDHM_E_PB
+                        }, 
+                        {
+                            "value": info2013.IDHM_L_PB
+                        }, 
+                        {
+                            "value": info2013.IDHM_R_PB
+                        }, 
+                        {
+                            "value": info2013.IDHM_PB
+                        }, 
+                        {
+                            "value": info2013.Ind_Escolaridade_PB
+                        }
+                    ]
+	
+	var mediaFeatureMin = [
+                        {
+                            "value": ""
+                        }, 
+                        {
+                            "value": ""
+                        }, 
+                        {
+                            "value": ""
+                        }, 
+                        {
+                            "value": ""
+                        }, 
+                        {
+                            "value": ""
                         }
                     ]                
 
@@ -189,10 +264,20 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
         $scope.dados.forEach(function(i){
         if(i.Nome === nome){
             $scope.info = i;
-        }
-        
-        }) 
+        }}) 
 
+		if($scope.info.Ini_Gestao === 2013){
+			$scope.infoPB = info2013;
+			mediaFeature = mediaFeature2013;
+			$scope.featureDataMin = mediaFeatureMin2013;
+			mediaFeatureMin = mediaFeatureMin2013
+		} else if ($scope.info.Ini_Gestao === 2009) {
+			$scope.infoPB = info2009;
+			mediaFeature = mediaFeature2009;
+			$scope.featureDataMin = mediaFeatureMin2009;
+			mediaFeatureMin = mediaFeatureMin2009
+		}
+		
         updateImage(nome)
 
         //deixa campo de pesquisa em branco
@@ -243,6 +328,8 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
 
         $scope.features.dataset[0].data = $scope.featureData;
         $scope.featuresMin.dataset[0].data = $scope.featureDataMin;
+		$scope.features.dataset[1].data = mediaFeature;
+		$scope.featuresMin.dataset[1].data = mediaFeatureMin;
     }
 
     //dados
