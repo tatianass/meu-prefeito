@@ -150,10 +150,10 @@
 <!--                            <li>
                                     <h4>{{info.Irregular}}</h4>
                                     <p class="text-muted">Contas irregulares</p>
-                                </li> -->
+                                </li> 
                                 <li>
                                     <a ng-click="setDetalhes()" class="page-scroll btn">{{txtDetalhes}}</a>
-                                </li>
+                                </li>-->
                                 
                             </ul>
                          </div>    
@@ -163,11 +163,11 @@
 
             <div class="row">
                 
-                <div ng-show="detalhes" class="col-lg-12 text-justify">
+ <!--               <div ng-show="detalhes" class="col-lg-12 text-justify">
 					
-                </div>
+                </div> -->
 
-                <div ng-hide="detalhes">
+ <!--               <div ng-hide="detalhes"> -->
 					<div>
                         <div fusioncharts class="team-member"
                            width="100%"
@@ -204,7 +204,7 @@
                     <div class="col-sm-6">
                         <div fusioncharts class="team-member"
                            width="100%"
-                           height="500%"
+                           height="450%"
                            type="msbar2d"
                            dataSource="{{featuresMin}}" >
                         </div>
@@ -221,16 +221,21 @@
                         Na Paraíba, os prefeitos gestores - nesse mesmo período de tempo - fecharam em média de <b>{{infoPB.Media_Contratos_PB}}</b> contratos, sendo <b>{{infoPB.Media_Dispensas_PB}}</b> dispensas (<b>{{infoPB.Media_Dispensas_PB_Percent}}</b>%) e <b>{{infoPB.Media_Convites_PB}}</b> convites (<b>{{infoPB.Media_Convite_PB_Percent}}</b>%) e pediram <b>{{infoPB.Media_Aditivos_Prazo_PB}}</b> aditivos de prazo (<b>{{infoPB.Media_Aditivos_Prazo_PB_Percent}}</b>%) e <b>{{infoPB.Media_Aditivos_Valor_PB}}</b> aditivos de valor (<b>{{infoPB.Media_Aditivos_Valor_PB_Percent}}</b>%).    
                     </p>
                     <p>
-                        O estado apresenta um IDHM médio - composto pelo IDHM Educação de <b>{{infoPB.IDHM_E_PB}}</b>, IDHM Longevidade (<b>{{infoPB.IDHM_L_PB}}</b>) e IDHM Renda (<b>{{infoPB.IDHM_R_PB}}</b>) - avaliado em <b>{{infoPB.IDHM_PB}}</b>, índice de escolaridade médio de <b>{{infoPB.Ind_Escolaridade_PB}}</b> e expectativa média de vida de <b>{{infoPB.Exp_Vida_PB}}</b> anos.    
+                        O estado apresenta um IDHM médio - composto pelo IDHM Educação (<b>{{infoPB.IDHM_E_PB}}</b>), IDHM Longevidade (<b>{{infoPB.IDHM_L_PB}}</b>) e IDHM Renda (<b>{{infoPB.IDHM_R_PB}}</b>) - avaliado em <b>{{infoPB.IDHM_PB}}</b>, índice de escolaridade médio de <b>{{infoPB.Ind_Escolaridade_PB}}</b> e expectativa média de vida de <b>{{infoPB.Exp_Vida_PB}}</b> anos.    
                     </p>
 					
-					<!--                    <h4>REGULAR OU IRREGULAR</h4>
+					<br>
+					<h4>Contas irregulares do gestor</h4>
                     <p>
-                        São classificados como REGULARES aqueles candidatos cujo tiveram suas contas aprovadas pelo TCE e são classificados como IRREGULARES aqueles outros que tiveram contas julgadas não aprovadas.
+						Para checar a situação das contas de algum gestor correspondentes ao período de 2008 a 2016:
+						<br>
+							1) Acessa os links: <a href="http://portal.tce.pb.gov.br/acesso_a_informacao/contas-irregulares/">http://portal.tce.pb.gov.br/acesso_a_informacao/contas-irregulares/</a> e <a href="https://tramita.tce.pb.gov.br/tramita/pages/main.jsf">https://tramita.tce.pb.gov.br/tramita/pages/main.jsf</a>
+						<br>
+							2) Preenche os campos disponíveis no segundo link baseando-se nas informações de Processo e Decisão disponíveis no primeiro link.
                     </p>
-                    <br>-->
+                    <br>
 
-                </div>
+               <!-- </div> -->
 
             </div>
             

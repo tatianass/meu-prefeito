@@ -1,12 +1,12 @@
 app.controller("IndexController", ["$scope", "$http", function($scope, $http){
-    $scope.detalhes = false;
-    $scope.txtDetalhes = "Mais Detalhes" 
+    //$scope.detalhes = false;
+    //$scope.txtDetalhes = "Julgamento de contas" 
     $scope.nome = "";
     $scope.value = 0;
     $scope.info = {}
     $scope.infoPB = {};
-    var info2013 = {"Ini_Gestao":2013,"Media_Contratos_PB":232.4056,"Media_Dispensas_PB":20.1222,"Media_Aditivos_Prazo_PB":23.8389,"Media_Aditivos_Valor_PB":33.1278,"Media_Convites_PB":20.5778,"IDHM_PB":0.5878,"IDHM_E_PB":0.4775,"IDHM_L_PB":0.7558,"IDHM_R_PB":0.5645,"Ind_Escolaridade_PB":0.3003,"Exp_Vida_PB":70.3435,"Media_Dispensas_PB_Percent":0.0866,"Media_Convite_PB_Percent":0.0885,"Media_Aditivos_Prazo_PB_Percent":0.1026,"Media_Aditivos_Valor_PB_Percent":0.1425};
-	var info2009 = {"Ini_Gestao":2009,"Media_Contratos_PB":339.2818,"Media_Dispensas_PB":10.6464,"Media_Aditivos_Prazo_PB":9.2873,"Media_Aditivos_Valor_PB":17.9006,"Media_Convites_PB":147.8122,"IDHM_PB":0.5877,"IDHM_E_PB":0.4775,"IDHM_L_PB":0.7558,"IDHM_R_PB":0.5644,"Ind_Escolaridade_PB":0.3003,"Exp_Vida_PB":70.3428,"Media_Dispensas_PB_Percent":0.0314,"Media_Convite_PB_Percent":0.4357,"Media_Aditivos_Prazo_PB_Percent":0.0274,"Media_Aditivos_Valor_PB_Percent":0.0528};
+    var info2013 = {"Ini_Gestao":2013,"Media_Contratos_PB":232,"Media_Dispensas_PB":20,"Media_Aditivos_Prazo_PB":23,"Media_Aditivos_Valor_PB":33,"Media_Convites_PB":20,"IDHM_PB":0.5878,"IDHM_E_PB":0.4775,"IDHM_L_PB":0.7558,"IDHM_R_PB":0.5645,"Ind_Escolaridade_PB":0.3030,"Exp_Vida_PB":70.34,"Media_Dispensas_PB_Percent":8.66,"Media_Convite_PB_Percent":8.85,"Media_Aditivos_Prazo_PB_Percent":10.26,"Media_Aditivos_Valor_PB_Percent":14.25};
+	var info2009 = {"Ini_Gestao":2009,"Media_Contratos_PB":339,"Media_Dispensas_PB":10,"Media_Aditivos_Prazo_PB":9,"Media_Aditivos_Valor_PB":17,"Media_Convites_PB":147,"IDHM_PB":0.5877,"IDHM_E_PB":0.4775,"IDHM_L_PB":0.7558,"IDHM_R_PB":0.5644,"Ind_Escolaridade_PB":0.3030,"Exp_Vida_PB":70.34,"Media_Dispensas_PB_Percent":3.14,"Media_Convite_PB_Percent":43.57,"Media_Aditivos_Prazo_PB_Percent":2.74,"Media_Aditivos_Valor_PB_Percent":5.28};
     
 	//dados da candidatura
     $scope.featureData = {}
@@ -242,9 +242,9 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
 
     $scope.setDetalhes = function(){
         if($scope.detalhes){
-            $scope.txtDetalhes = "Mais Detalhes"
+            $scope.txtDetalhes = "Julgamento de contas"
         }else{
-            $scope.txtDetalhes = "Menos Detalhes"
+            $scope.txtDetalhes = "Métricas da gestão"
         }
 
         $scope.detalhes = !$scope.detalhes

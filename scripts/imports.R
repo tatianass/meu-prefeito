@@ -25,3 +25,13 @@ if(!require(rjson)){
   install.packages("rjson")
 }
 library(rjson)
+
+if(!require(xlsx)){  
+  install.packages("xlsx")
+}
+library(xlsx)
+
+if(!require(readODS)){  
+  install.packages("readODS")
+}
+library(readODS)

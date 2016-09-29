@@ -3,6 +3,8 @@ source("imports.R")
 tre_sagres <- read.csv('../data/tre_sagres_unificado.csv', encoding = "UTF-8", stringsAsFactors = F)
 cidades <- read.csv('../data/municipios.csv', encoding = "UTF-8", sep = ";", dec = ",", stringsAsFactors = F) %>% 
   filter(UF==25, ANO == max(ANO)) %>% rename(de_Ugestora = Municipio)
+contas_irregulares <- read.csv('../data/contas_julgadas_irregulares_TRE_2016.csv', encoding = "UTF-8", stringsAsFactors = F)
+
 
 tre_sagres$de_Ugestora[tre_sagres$de_Ugestora == "CAMPO DE SANTANA"] <- "TACIMA"
 
