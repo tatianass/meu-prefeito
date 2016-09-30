@@ -127,7 +127,7 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
     //grafico das features/indicadores
     $scope.features = {
         "chart": {
-                "caption": "Informações do Mandato do Candidato à releição",
+                "caption": "Informações da última gestão do Candidato à releição",
                 "paletteColors": "#81b3dd,#b9cb6e",
                 "bgColor": "#ffffff",
                 "showBorder": "0",
