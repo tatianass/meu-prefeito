@@ -171,11 +171,11 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
             ],            
             "dataset": [
                 {
-                    "seriesname": "Resultado",
+                    "seriesname": "Quantidade",
                     "data": $scope.featureData
                 }, 
                 {
-                    "seriesname": "Média",
+                    "seriesname": "Média PB",
                     "data": mediaFeature
                 }
             ]
@@ -229,11 +229,11 @@ app.controller("IndexController", ["$scope", "$http", function($scope, $http){
             ],            
             "dataset": [
                 {
-                    "seriesname": "Resultado",
+                    "seriesname": "Valor",
                     "data": $scope.featureDataMin
                 }, 
                 {
-                    "seriesname": "Média",
+                    "seriesname": "Média PB",
                     "data": mediaFeatureMin
                 }
             ]
