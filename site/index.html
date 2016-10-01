@@ -32,6 +32,10 @@
 
     <!-- Angular controller -->
     <script type="text/javascript" src="angular/controller/indexController.js"></script>
+    
+    <!-- ngTable -->
+    <link rel="stylesheet" href="style/css/ng-table.css">
+    <script src="scripts/js/ng-table.min.js"></script>
 
     <!-- Style -->
     <link rel="stylesheet" type="text/css" href="style/css/style.css">
@@ -85,8 +89,12 @@
                         <a class="page-scroll" href="#termometro">Meu Prefeito</a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="#ranking">Ranking</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="#sobre">Sobre</a>
                     </li>
+                    
                     <li>
                         <a class="page-scroll" href="#equipe">Equipe</a>
                     </li>
@@ -249,6 +257,22 @@
 
     </section>
 
+    <section id="ranking" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <table ng-table-dynamic="usersTable with cols" show-filter="filter"
+                       class="table table-bordered table-condensed table-hover editable-table demoTable">
+                    <tr ng-repeat="row in $data track by $index">
+                        <td ng-repeat="col in $columns track by $index">
+                            <span>
+                                {{row[col.field]}}
+                            </span>                    
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
     <!-- sobre Section -->
     <section id="sobre" class="bg-light-gray">
         <div class="container">

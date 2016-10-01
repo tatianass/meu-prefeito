@@ -1,1 +1,1 @@
-var app = angular.module("app", ["ng-fusioncharts", "ui.bootstrap"]);
+var app = angular.module("app", ["ng-fusioncharts", "ui.bootstrap", "ngTable"]);
