@@ -1798,6 +1798,7 @@ pre code {
   }
   .col-sm-6 {
     width: 50%;
+	position: relative;
   }
   .col-sm-5 {
     width: 41.66666667%;
