@@ -89,9 +89,6 @@
                         <a class="page-scroll" href="#termometro">Meu Prefeito</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#ranking">Ranking</a>
-                    </li>
-                    <li>
                         <a class="page-scroll" href="#sobre">Sobre</a>
                     </li>
                     
@@ -190,7 +187,7 @@
 					<p>
 					﻿Na administração pública direta de qualquer que seja o poder da União, Estados, Municípios e Distrito Federal existe a obrigatoriedade de seguir um determinado procedimento chamado de licitação pública. As licitação podem ser encontrados na <a href="http://www.planalto.gov.br/ccivil_03/leis/L8666cons.htm">Lei 8.666/93</a> e na <a href="http://www.planalto.gov.br/ccivil_03/leis/2002/L10520.htm">Lei 10.520/02</a> onde nestas pode-se observar a existência de seis modalidades: concorrência pública, tomada de preços, carta convite, concurso, leilão e pregão.
 					</p>
-					<p>Algumas modalidades de licitação tem várias fragilidades que podem dar margem à corrupção. Uma delas é a licitação do tipo convite que pode ser usada para favorecer um dos licitantes em um contrato com a administração pública. De acordo com o TCU, esta é a modalidade licitatória que mais possui jurisprudência. Um outro mecanismo que é comumente usado para diversos tipos de fraudes é o contrato por dispensa ou inexigibilidade de licitação. Nesse caso a administração pública pode fazer contratações diretas sem processo licitatório.
+					<p>Algumas modalidades de licitação tem várias fragilidades que podem dar margem à corrupção. Uma delas é a licitação do tipo convite que pode ser usada para favorecer um dos licitantes em um contrato com a administração pública. De acordo com o TCU, esta é a modalidade licitatória que mais possui jurisprudência. Um outro mecanismo que é comumente usado para diversos tipos de fraudes é o contrato por dispensa ou inexigibilidade de licitação. Nesse caso a administração pública pode contratar fazer contratações diretas sem processo licitatório.
 					</p>
 					<p>É importante dizer que essas modalidades estão previstas em lei e não indicam a priori corrupção ou qualquer tipo de irregularidade. Mas como são mecanismos recorrentemente associados ao mal uso do dinheiro público, decidimos olhar com que frequência eles estão sendo usados pelos atuais prefeitos candidatos a reeleição no estado da Paraíba. 
 					</p>
@@ -255,23 +252,6 @@
             </div>
             
 
-    </section>
-
-    <section id="ranking" class="bg-light-gray">
-        <div class="container">
-            <div class="row">
-                <table ng-table-dynamic="usersTable with cols" show-filter="filter"
-                       class="table table-bordered table-condensed table-hover editable-table demoTable">
-                    <tr ng-repeat="row in $data track by $index">
-                        <td ng-repeat="col in $columns track by $index">
-                            <span>
-                                {{row[col.field]}}
-                            </span>                    
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
     </section>
     <!-- sobre Section -->
     <section id="sobre" class="bg-light-gray">
