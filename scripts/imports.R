@@ -35,3 +35,23 @@ if(!require(readODS)){
   install.packages("readODS")
 }
 library(readODS)
+
+if(!require(tm)){  
+  install.packages("tm")
+}
+library(tm)
+
+if(!require(SnowballC)){  
+  install.packages("SnowballC")
+}
+library(SnowballC)
+
+if(!require(wordcloud)){  
+  install.packages("wordcloud")
+}
+library(wordcloud)
+
+if(!require(reshape2)){  
+  install.packages("reshape2")
+}
+library(reshape2)
