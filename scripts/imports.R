@@ -55,3 +55,8 @@ if(!require(reshape2)){
   install.packages("reshape2")
 }
 library(reshape2)
+
+if(!require(stringr)){  
+  install.packages("stringr")
+}
+library(stringr)

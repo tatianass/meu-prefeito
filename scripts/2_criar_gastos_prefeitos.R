@@ -1,5 +1,10 @@
 source("imports.R")
 
+separa_partido_coligacao <- function(x){
+  x <- candidatos_eleitos$Partido...Coligação
+  partido_coligacao_list <- str_split(x, " / ")
+}
+
 # limite de despesas
 limite_despesas_candidatos_pb <- read.csv("../data/limite_gastos_campanha_eleitoral_2016.csv", sep=";", dec=",", stringsAsFactors = F)
 limite_despesas_candidatos_pb$Município <- iconv(limite_despesas_candidatos_pb$Município, to="ASCII//TRANSLIT")
@@ -17,6 +22,17 @@ gastos_prefeitos_pb <- filter(gastos_candidatos_pb, Cargo == "Prefeito")
 
 # candidatos eleitos
 candidatos_eleitos <- read.csv("../data/eleicao_geral_resultado_candidatos.csv",sep=";")
+candidatos_eleitos$Localidade <- iconv(candidatos_eleitos$Localidade, to="ASCII//TRANSLIT")
+
+fruits <- c(
+  "pros / aeaea",
+  "psdb / por amor a campina",
+  "pmdb"
+)
+
+
+
+candidatos_eleitos
 
 
 # adicionar informacao de quais candidatos foram eleitos em total_gastos_candidatos
