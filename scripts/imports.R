@@ -9,12 +9,6 @@ if(!require(caret)){
 }
 library(caret)
 
-# Metricas de importancia de atributos
-if(!require(FSelector)){  
-  install.packages("FSelector")
-}
-library(FSelector)
-
 # Tratar com JSON
 if(!require(jsonlite)){  
   install.packages("jsonlite")
@@ -26,15 +20,15 @@ if(!require(rjson)){
 }
 library(rjson)
 
-if(!require(xlsx)){  
-  install.packages("xlsx")
-}
-library(xlsx)
+# if(!require(xlsx)){  
+#   install.packages("xlsx")
+# }
+# library(xlsx)
 
-if(!require(readODS)){  
-  install.packages("readODS")
-}
-library(readODS)
+# if(!require(readODS)){  
+#   install.packages("readODS")
+# }
+# library(readODS)
 
 if(!require(tm)){  
   install.packages("tm")
@@ -60,3 +54,9 @@ if(!require(stringr)){
   install.packages("stringr")
 }
 library(stringr)
+
+# # Metricas de importancia de atributos
+# if(!require(FSelector)){  
+#   install.packages("FSelector")
+# }
+# library(FSelector)
