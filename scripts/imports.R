@@ -30,11 +30,6 @@ library(rjson)
 # }
 # library(readODS)
 
-if(!require(tm)){  
-  install.packages("tm")
-}
-library(tm)
-
 if(!require(SnowballC)){  
   install.packages("SnowballC")
 }
@@ -54,6 +49,11 @@ if(!require(stringr)){
   install.packages("stringr")
 }
 library(stringr)
+
+if(!require(tm)){  
+  install.packages("tm")
+}
+library(tm)
 
 # # Metricas de importancia de atributos
 # if(!require(FSelector)){  
