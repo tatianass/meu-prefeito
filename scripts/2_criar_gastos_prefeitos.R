@@ -10,23 +10,26 @@ separa_partido_coligacao <- function(x){
   })
   
   partido_coligacao <- do.call(rbind, partido_coligacao_list) %>% data.frame
-  partido_coligacao <- transmute(partido_coligacao, Partido=as.character(X1), Coligação=as.character(X2))
+  partido_coligacao <- transmute(partido_coligacao, Partido=as.character(X1), ColigaÃ§Ã£o=as.character(X2))
   return(partido_coligacao)
 }
 
-junta_informacoes_candidato <- function(col) {
-  not_na_index <- which(!is.na(col))
-  ifelse(length(not_na_index) == 0, "-", col[max(not_na_index)])
-}
+# junta_informacoes_candidato <- function(col) {
+#   not_na_index <- which(!is.na(col))
+#   ifelse(length(not_na_index) == 0, "-", col[max(not_na_index)])
+# }
+# 
+# by_user <- total_gastos_candidatos %>% group_by(NÃºmero.candidato, Nome.da.UE)
+# user.summary <- summarize_each(by_user, funs(junta_informacoes_candidato))
 
 # limite de despesas
 limite_despesas_candidatos_pb <- read.csv("../data/limite_gastos_campanha_eleitoral_2016.csv", sep=";", dec=",", stringsAsFactors = F, encoding = "UTF-8")
-limite_despesas_candidatos_pb$Município <- iconv(limite_despesas_candidatos_pb$Município, to="ASCII//TRANSLIT")
+limite_despesas_candidatos_pb$MunicÃ­pio <- iconv(limite_despesas_candidatos_pb$MunicÃ­pio, to="ASCII//TRANSLIT")
 limite_despesas_candidatos_pb<-limite_despesas_candidatos_pb %>% filter(UF == "PB") %>% 
-  select(municipio = Município, Prefeito = Limite.de.Gasto.Prefeito.1º.Turno, Vereador = Limite.de.Gasto.Vereador, eleitores_aptos = Eleitorado.Apto) %>% 
+  select(municipio = MunicÃ­pio, Prefeito = Limite.de.Gasto.Prefeito.1Âº.Turno, Vereador = Limite.de.Gasto.Vereador, eleitores_aptos = Eleitorado.Apto) %>% 
   melt(id=c("municipio","eleitores_aptos")) %>% 
-  rename(cargo = variable, limite_de_despesas = value) %>%
-  mutate(cargo = as.character(cargo))
+  rename(Cargo = variable, Limite_de_despesas = value, Municipio = municipio, Eleitores_aptos = eleitores_aptos) %>%
+  mutate(Cargo = as.character(Cargo))
 
 # gastos dos candidatos
 gastos_candidatos_pb <- read.csv("../data/despesas_candidatos_2016_PB.txt", sep=";", encoding = "latin1", dec = ",", stringsAsFactors = F)
@@ -37,44 +40,29 @@ gastos_candidatos_pb$Nome.candidato <- iconv(gastos_candidatos_pb$Nome.candidato
 todos_candidatos <- read.csv("../data/eleicao_todos_candidatos.csv", sep=";", stringsAsFactors = F, encoding = "UTF-8")
 todos_candidatos$Localidade <- iconv(todos_candidatos$Localidade, from="UTF-8", to="ASCII//TRANSLIT")
 todos_candidatos$Candidato <- iconv(todos_candidatos$Candidato, from="UTF-8", to="ASCII//TRANSLIT")
-todos_candidatos$Situação_classe <- ifelse((todos_candidatos$Situação %in% c("Suplente","Não eleito")), "Não eleito", "Eleito")
-todos_candidatos <- bind_cols(todos_candidatos, separa_partido_coligacao(todos_candidatos$Partido...Coligação)) %>%
-  select(Localidade, Cargo, Candidato, Votação, Situação, Situação_classe, Partido, Coligação, Nº)
+todos_candidatos$SituaÃ§Ã£o_classe <- ifelse((todos_candidatos$SituaÃ§Ã£o %in% c("Suplente","NÃ£o eleito")), "NÃ£o eleito", "Eleito")
+todos_candidatos <- bind_cols(todos_candidatos, separa_partido_coligacao(todos_candidatos$Partido...ColigaÃ§Ã£o)) %>%
+  select(Localidade, Cargo, Candidato, VotaÃ§Ã£o, SituaÃ§Ã£o, SituaÃ§Ã£o_classe, Partido, ColigaÃ§Ã£o, NÂº)
 
 # cidades sem registro de gastos
-cidades_gastos <- gastos_candidatos_pb$Nome.da.UE %>% na.omit() %>% unique()
-cidades_sem_registro_gasto <- todos_candidatos$Localidade %>% unique() 
-cidades_sem_registro_gasto <- cidades_sem_registro_gasto[!(cidades_sem_registro_gasto %in% cidades_gastos)]
-todos_candidatos <- todos_candidatos %>% filter(!(Localidade %in% cidades_sem_registro_gasto))
+# cidades_gastos <- gastos_candidatos_pb$Nome.da.UE %>% na.omit() %>% unique()
+# cidades_sem_registro_gasto <- todos_candidatos$Localidade %>% unique() 
+# cidades_sem_registro_gasto <- cidades_sem_registro_gasto[!(cidades_sem_registro_gasto %in% cidades_gastos)]
+# todos_candidatos <- todos_candidatos %>% filter(!(Localidade %in% cidades_sem_registro_gasto))
 
-# tabela com total de gastos por candidato
-total_gastos_candidatos <- gastos_candidatos_pb %>% group_by(Nome.candidato, Número.candidato, Nome.da.UE, Sigla..Partido, CPF.do.candidato, Cargo) %>% 
-  summarise(soma_gastos = sum(Valor.despesa)) %>% 
-  full_join(todos_candidatos, by = c("Nome.da.UE" = "Localidade", "Nome.candidato" = "Candidato", "Número.candidato" = "Nº", "Sigla..Partido" = "Partido", "Cargo" = "Cargo")) %>% 
-  arrange(Nome.candidato, Número.candidato, Sigla..Partido, Nome.da.UE, Cargo)
+# tabela com total de gastos por candidato e limite de despesas de candidatos
+total_gastos_candidatos <- gastos_candidatos_pb %>% group_by(NÃºmero.candidato, Nome.da.UE, CPF.do.candidato, Nome.candidato) %>% 
+  summarise(soma_gastos = sum(Valor.despesa)) %>%
+  right_join(todos_candidatos, by = c("Nome.da.UE" = "Localidade", "NÃºmero.candidato" = "NÂº")) %>% 
+  arrange(NÃºmero.candidato, Nome.da.UE, Cargo)
+  
+total_gastos_candidatos$soma_gastos <- with(total_gastos_candidatos, ifelse(is.na(soma_gastos),0,soma_gastos))
 
-by_user <- total_gastos_candidatos %>% group_by(Número.candidato, Nome.da.UE)
-user.summary <- summarize_each(by_user, funs(junta_informacoes_candidato))
+informacoes_candidatos <- total_gastos_candidatos %>% inner_join(limite_despesas_candidatos_pb, by = c(Nome.da.UE = "Municipio", Cargo = "Cargo"))
 
-a <- user.summary %>% select(Número.candidato, Nome.da.UE) %>% unique %>% arrange(Nome.da.UE)
-b <- todos_candidatos %>% select(Nº, Localidade) %>% unique %>% arrange(Localidade)
-
-rowcheck  <- function(df1, df2){
-  xx <- apply(df1, 1, paste, collapse = "")
-  yy <- apply(df2, 1, paste, collapse = "")
-  zz <- xx %in% yy
-  return(zz)
-}
-
-faltosos <- user.summary[which(rowcheck(a, b) == F),]
-
-us.areia <- user.summary %>% filter(Nome.da.UE == "AREIA")
-tc.areia <- todos_candidatos %>% filter(Localidade == "AREIA")
-
-# DESCOBRIR PORQUE ESTAO APARECENDO MAIS CANDIDATOS NO USER.SUMMARY DO QUE NA TABELA DE TODOS OS CANDIDATOS
-# FAZER JOIN COM O LIMITE DE DESPESAS
 # PROCURAR SEXO DOS CANDIDATOS
-full_join(limite_despesas_candidatos_pb, by = c(Nome.da.UE = "municipio", Cargo = "cargo"))
+# ADICIONAR INFORMACAO DO ELEITORADO POR MUNICIPIO
+# COMPARECIMENTO E ABSTENCAO POR LOCALIDADE
 
 ### word cloud
 configura_conjunto_palavras <- function(x){
@@ -85,6 +73,6 @@ configura_conjunto_palavras <- function(x){
   gastosCorpus
 }
 
-configura_conjunto_palavras(gastos_candidatos_pb$Descrição.da.despesa) %>% wordcloud(max.words = 100, random.order = FALSE)
-configura_conjunto_palavras(gastos_vereadores_pb$Descrição.da.despesa) %>% wordcloud(max.words = 100, random.order = FALSE)
-configura_conjunto_palavras(gastos_prefeitos_pb$Descrição.da.despesa) %>% wordcloud(max.words = 100, random.order = FALSE)
+configura_conjunto_palavras(gastos_candidatos_pb$DescriÃ§Ã£o.da.despesa) %>% wordcloud(max.words = 100, random.order = FALSE)
+configura_conjunto_palavras(gastos_vereadores_pb$DescriÃ§Ã£o.da.despesa) %>% wordcloud(max.words = 100, random.order = FALSE)
+configura_conjunto_palavras(gastos_prefeitos_pb$DescriÃ§Ã£o.da.despesa) %>% wordcloud(max.words = 100, random.order = FALSE)
