@@ -67,6 +67,8 @@ eleitorado_apto$MUNICIPIO <- iconv(eleitorado_apto$MUNICIPIO, from="UTF-8", to="
 
 candidatos <- candidatos %>% inner_join(eleitorado_apto, by = c("Descricao_ue" = "MUNICIPIO"))
 
+write.table(candidatos, "../data/candidatos.csv" ,sep=";", row.names = F, quote = F)
+
 ### word cloud
 # configura_conjunto_palavras <- function(x){
 #   gastosCorpus <- Corpus(VectorSource(x)) %>% 
