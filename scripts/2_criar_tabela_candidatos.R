@@ -67,6 +67,14 @@ eleitorado_apto$MUNICIPIO <- iconv(eleitorado_apto$MUNICIPIO, from="UTF-8", to="
 
 candidatos <- candidatos %>% inner_join(eleitorado_apto, by = c("Descricao_ue" = "MUNICIPIO"))
 
+# Adiciona informacoes das cidades
+cidades <- read.csv("../data/municipios.csv", sep=";", dec=",", stringsAsFactors = F) %>% 
+  filter(ANO == 2010, UF == 25) %>%
+  select(Municipio, Esperanca_vida = ESPVIDA, IDHM, IDHM_E, IDHM_L, IDHM_R) %>%
+  mutate(Municipio=replace(Municipio, Municipio=="SAO DOMINGOS", "SAO DOMINGOS DE POMBAL"))
+
+candidatos <- candidatos %>% inner_join(cidades, by = c("Descricao_ue" = "Municipio"))
+
 write.table(candidatos, "../data/candidatos.csv" ,sep=";", row.names = F, quote = F)
 
 ### word cloud
