@@ -1,22 +1,36 @@
 source("imports.R")
+source("util.R")
 
-informacoes_pessoais_candidatos <- read.csv("../data/2012/consulta_cand_2012_PB.txt", sep=";", header = F, stringsAsFactors = F, encoding = "latin1", col.names = c("Data_geracao","Dora_geracao","Ano_eleicao","Num_turno","Descricao_eleicao","Sigla_uf","Sigla_ue","Descricao_ue","Codigo_cargo","Descricao_cargo","Nome_candidato","Sequencial_candidato",
-                                                                                                                                                               "Numero_candidato_urna","CPF_candidato","Nome_urna_candidato","Cod_situacao_candidatura","Descricao_situacao_candidatura","Numero_partido","Sigla_partido","Nome_partido","Codigo_legenda","Sigla_legenda","Composicao_legenda","Nome_legenda",
-                                                                                                                                                               "Codigo_ocupacao","Descricao_ocupacao","Data_nascimento","Num_titulo_eleitoral_candidato","Idade_data_eleicao","Codigo_sexo","Descricao_sexo","Cod_grau_instrucao","Descricao_grau_instrucao","Codigo_estado_civil","Descricao_estado_civil","Codigo_cor_raca",
-                                                                                                                                                               "Descricao_cor_raca","Codigo_nacionalidade","Descricao_nacionalidade","Sigla_uf_nascimento","Codigo_municipio_nascimento","Nome_municipio_nascimento","Despesa_max_campanha","Cod_situacao_totalizacao_turno","Descricao_situacao_totalizacao_turno","Email"))
+# Informacoes pessoais dos candidatos
+informacoes_pessoais_candidatos <- read.csv("../data/2012/consulta_cand_2012_PB.txt", sep=";", header = F, stringsAsFactors = F, encoding = "latin1", col.names = c("Data_geracao","Dora_geracao","Ano_eleicao","Num_turno","Descricao_eleicao","Sigla_uf","Sigla_ue","Descricao_ue","Codigo_cargo","Descricao_cargo","Nome_candidato","Sequencial_candidato", "Numero_candidato_urna","CPF_candidato","Nome_urna_candidato","Cod_situacao_candidatura","Descricao_situacao_candidatura","Numero_partido","Sigla_partido","Nome_partido","Codigo_legenda","Sigla_legenda","Composicao_legenda","Nome_legenda", "Codigo_ocupacao","Descricao_ocupacao","Data_nascimento","Num_titulo_eleitoral_candidato","Idade_data_eleicao","Codigo_sexo","Descricao_sexo","Cod_grau_instrucao","Descricao_grau_instrucao","Codigo_estado_civil","Descricao_estado_civil","Codigo_nacionalidade","Descricao_nacionalidade","Sigla_uf_nascimento","Codigo_municipio_nascimento","Nome_municipio_nascimento","Despesa_max_campanha","Cod_situacao_totalizacao_turno","Descricao_situacao_totalizacao_turno","Email"))
+informacoes_pessoais_candidatos <- carrega_informacoes_pessoais_candidatos(informacoes_pessoais_candidatos)
 
-todos_candidatos <- read.csv("../data/2012/consulta_cand_2012_PB.txt", sep=";", header = F, stringsAsFactors = F, encoding = "latin1")
+# Adiciona cargo, partido, coligação e votação dos candidatos
+todos_candidatos <- read.csv("../data/2012/eleicao_todos_candidatos.csv", sep=";", stringsAsFactors = F, encoding = "UTF-8")
+todos_candidatos <- carrega_todos_candidatos(todos_candidatos)
+candidatos <- informacoes_pessoais_candidatos %>% inner_join(todos_candidatos, by = c("Descricao_ue" = "Localidade", "Numero_candidato_urna" = "Numero_candidato"))
 
-#limite_despesas_candidatos_pb <- read.csv("", sep=";", dec=",", stringsAsFactors = F, encoding = "UTF-8")
+# Adiciona limite de despesas para cada cargo e municipio
+limite_despesas_candidatos_pb <- read.csv("../data/2016/limite_gastos_campanha_eleitoral_2016.csv", sep=";", dec=",", stringsAsFactors = F, encoding = "UTF-8")
+limite_despesas_candidatos_pb <- carrega_limite_depesas_candidatos_pb(limite_despesas_candidatos_pb, retiraValores = T)
+candidatos <- candidatos %>% inner_join(limite_despesas_candidatos_pb, by = c("Descricao_ue" = "Municipio", "Cargo" = "Cargo"))
 
+# Adiciona gastos para cada candidato
 gastos_candidatos_pb <- read.csv("../data/2012/despesas_candidatos_2012_PB.txt", sep=";", encoding = "latin1", dec = ",", stringsAsFactors = F)
+gastos_candidatos_pb <- gastos_candidatos_pb %>% rename(Nome.da.UE = Município)
+gastos_candidatos_pb <- carrega_gastos_candidatos_pb(gastos_candidatos_pb)
 
-#abstencao <- read.csv("../data/2012/", sep=";", dec = ",", stringsAsFactors = F, encoding = "UTF-8", header = T) %>% 
-#  select(Localidade, Cargo, Comparecimento, Abstenção)
+candidatos <- gastos_candidatos_pb %>% right_join(candidatos, by = c("CPF.do.candidato" = "CPF_candidato"))
+candidatos$Soma_gastos <- with(candidatos, ifelse(is.na(Soma_gastos),0,Soma_gastos))
 
-eleitorado_apto <- read.csv("../data/2012/perfil_eleitorado_2012.txt", sep=";", header = F, encoding = "latin1") 
-#%>% filter(UF=="PB")
+# Adiciona abstencao
+abstencao <- read.csv("../data/2012/quadro_de_comparecimento.csv", sep=";", dec = ",", stringsAsFactors = F, encoding = "latin1", header = T) %>% 
+  select(Localidade = Abrangência, Comparecimento, Abstenção)
 
+# Adiciona despesas dos candidatos
+eleitorado_apto <- read.csv("../data/2012/perfil_eleitorado_2012.txt", sep=";", header = F, encoding = "latin1") %>% filter(UF=="PB")
+
+# Adiciona informacoes das cidades
 cidades <- read.csv("../data/municipios.csv", sep=";", dec=",", stringsAsFactors = F) %>% 
   filter(ANO == 2010, UF == 25) %>%
   select(Municipio, Esperanca_vida = ESPVIDA, IDHM, IDHM_E, IDHM_L, IDHM_R) %>%
